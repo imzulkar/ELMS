@@ -83,7 +83,7 @@ TEMPLATES = [
     },
 ]
 
-# WSGI_APPLICATION = 'LMS_system.wsgi.application'
+WSGI_APPLICATION = 'LMS_system.wsgi.application'
 ASGI_APPLICATION = "LMS_system.asgi.application"
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
