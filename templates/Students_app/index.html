@@ -1,0 +1,15 @@
+{% extends 'Students_app/student_base.html' %}
+{% load static %}
+{% block body_block %}
+  <section class="dashboard-welcome section-padding mt-5" >
+      <div class="container-fluid ">
+          <div class="welcome_img container">
+              <img src="{% static 'Students_app/img/diulogoside.png' %}" alt="" width="100%">
+          </div>
+          <div class="welcome_txt text-xl-center" >
+              <h1 class="text-xl-center mt-30px" style="font-size: 4rem">Welcome to Student portal</h1>
+          </div>
+      </div>
+  </section>
+
+{% endblock %}

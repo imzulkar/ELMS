@@ -1,0 +1,20 @@
+{% extends 'Admin_panel/admin_panel_base.html' %}
+{% block body_block %}
+    <div class="container">
+
+       <p>
+           <p>Name: {{ teacher_details.first_name }} {{ teacher_details.last_name }}</p>
+           <p>Email: {{ teacher_details.email }}</p>
+           <p>Username: {{ teachers_info.userId }}</p>
+           <p>EmployID{{ teachers_info.empid }}</p>
+           <p>Designation: {{ teachers_info.designation }}</p>
+           <p>Department: {{ teachers_info.department }}</p>
+           <p>Faculty: {{ teachers_info.faculty }}</p>
+           <p>WebPage: {{ teachers_info.personalWebPage }}</p>
+           <p>Phone: {{ teachers_info.phone }}</p>
+
+
+       </p>
+
+    </div>
+{% endblock %}

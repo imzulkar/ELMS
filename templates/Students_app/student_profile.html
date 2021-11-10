@@ -1,0 +1,32 @@
+{% extends 'Students_app/student_base.html' %}
+{% load static %}
+{% block body_block %}
+    {% if user.is_authenticated %}
+        <p class="">Student ID:
+        {{ user_more_info.studentID }}
+        </p>
+        <p>Student Name: {{ user_info.first_name }} {{ user_info.last_name }}</p>
+        <p class="">Father's Name:
+        {{ user_more_info.father_name }}
+        </p>
+
+        <p class="">Mother's Name:
+        {{ user_more_info.mother_name }}
+        </p>
+        <p class="">Phone No:
+        {{ user_more_info.phone }}
+        </p>
+
+        <p class="">Address:
+        {{ user_more_info.address }}
+        </p>
+
+
+
+
+
+
+
+
+{% endif %}
+{% endblock %}

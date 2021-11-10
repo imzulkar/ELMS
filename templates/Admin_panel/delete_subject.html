@@ -1,0 +1,10 @@
+{% extends 'Admin_panel/admin_panel_base.html' %}
+
+{% block body_block %}
+
+    <form method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Delete" class="btn btn-danger btn-sm">
+    <a href="{% url 'Admin_panel:course_list' %}" class="btn btn-warning btn-sm">Cancel</a>
+    </form>
+{% endblock %}

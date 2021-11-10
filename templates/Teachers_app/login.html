@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap  -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'Students_app/css/loginForm.css' %}">
+    <title>Document</title>
+</head>
+
+<body>
+<div class="auth-wrapper">
+    <div class="auth-content">
+        <div class="auth-bg">
+            <span class="r"></span>
+            <span class="r s"></span>
+            <span class="r s"></span>
+            <span class="r"></span>
+        </div>
+        <div class="card">
+            <div class="card-body text-center">
+                <div class="mb-1">
+                    <div class="row">
+                        <div class="col-md-12">
+
+                           <img style="display:block;width:90px;margin: 0 auto;"
+                                 src="{% static 'Students_app/img/su_logo.png' %}">
+                        </div>
+
+                    </div>
+
+                </div>
+                <h3 class="mb-4">Teachers Login</h3>
+                <form action="{% url 'Teachers_app:teacherslogin' %}" method="POST">
+                    <div class="input-group">
+
+                        <input name="username" type="text" id="logMain_UserName" class="form-control"
+                               placeholder="Enter your Login username">
+
+
+                    </div>
+                    <div>
+                        <span style="color:Red;visibility:hidden;">*</span>
+                    </div>
+                    <div class="input-group mb-4">
+
+                        <input name="password" type="password" id="logMain_Password" class="form-control"
+                               placeholder="Enter your password">
+
+                    </div>
+
+                    <input type="submit" value="LOG IN" class="btn btn-primary shadow-2 mb-4" style="width: 100%;">
+                    {% csrf_token %}
+                </form>
+
+                <p class="mb-2 text-muted">Forgot password? <a  href="">Reset</a></p>
+
+
+                <!-- <p class="mb-0 text-muted">Don’t have an account? <a href="auth-signup.html">Signup</a></p> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

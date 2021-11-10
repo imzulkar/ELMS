@@ -1,0 +1,93 @@
+{% extends 'Students_app/student_base.html' %}
+{% load static %}
+{% block body_block %}
+    {% if user.is_authenticated %}
+
+
+        <!-- Counts Section -->
+        <section class="dashboard-counts section-padding">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- Count item widget-->
+                    <div class="col-xl-3 col-md-4 col-6">
+                        <div class="wrapper count-title d-flex">
+                            <div class="icon"><i class="fa fa-money"></i></div>
+                            <div class="name"><strong class="text-uppercase">Total Payable</strong><span>All time</span>
+                                <div class="count-number">25</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Count item widget-->
+                    <div class="col-xl-3 col-md-4 col-6">
+                        <div class="wrapper count-title d-flex">
+                            <div class="icon"><i class="fa fa-money"></i></div>
+                            <div class="name"><strong class="text-uppercase">Total Paid</strong><span>Till Now</span>
+                                <div class="count-number">400</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Count item widget-->
+                    <div class="col-xl-3 col-md-4 col-6">
+                        <div class="wrapper count-title d-flex">
+                            <div class="icon"><i class="fa fa-money"></i></div>
+                            <div class="name"><strong class="text-uppercase">Total Due</strong><span>Since </span>
+                                <div class="count-number">342</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Count item widget-->
+                    <div class="col-xl-3 col-md-4 col-6">
+                        <div class="wrapper count-title d-flex">
+                            <div class="icon"><i class="fa fa-money"></i></div>
+                            <div class="name"><strong class="text-uppercase">Total Others</strong><span>Last 2 days</span>
+                                <div class="count-number">123</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!-- Header Section-->
+        <section class="dashboard-header section-padding">
+            <div class="container-fluid">
+                <div class="row d-flex align-items-md-stretch">
+                    <!-- To Do List-->
+
+                    <!-- Line Chart -->
+                    <div class="col-lg-12 col-md-12 flex-lg-last flex-md-first align-self-baseline">
+
+
+                        <div id="container1"></div>
+                        <div id="container"></div>
+{#                        <div class="card sales-report">#}
+{#                            <h2 class="display h4">Sales marketing report</h2>#}
+{#                            <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor amet officiis</p>#}
+{#                            <div class="line-chart">#}
+{#                                <canvas id="lineCahrt"></canvas>#}
+{#                            </div>#}
+{#                        </div>#}
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Statistics Section-->
+
+        <footer class="main-footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p>Your company &copy; 2017-2020</p>
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        <p>Design by <a href="https://bootstrapious.com/p/bootstrap-4-dashboard" class="external">Bootstrapious</a>
+                        </p>
+                        <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions and it helps me to run Bootstrapious. Thank you for understanding :)-->
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="{% static 'Students_app/js/highcard.js' %}"></script>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends 'Teachers_app/teachers_base.html' %}
+{% load static %}
+
+{% block body_block %}
+    <h3>Name: {{ teachers_info.first_name }} {{ user_info.last_name }}</h3>
+    <h3>Employ Id: {{ teachers_details.empid }}</h3>
+
+{% endblock %}

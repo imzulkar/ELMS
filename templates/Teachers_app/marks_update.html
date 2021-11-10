@@ -1,0 +1,16 @@
+{% extends 'Teachers_app/teachers_base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block body_block %}
+    <div class="container mt-1">
+    <h1>Student ID: {{ marks.student }}</h1>
+        <form method="POST">
+    {% csrf_token %}
+    <h6 class=header-bar>Mark Update</h6>
+    <div class="input-group">
+    <sapn class="input-group mb-3">{{ form|crispy }}</sapn>
+        <input type="submit" value="Update" class="btn btn-warning btn-lg rounded ml-5">
+        <a href="{% url 'Teachers_app:student_list' %}" class="btn btn-danger btn-lg rounded">Cancel</a>
+    </div></form>
+</div>
+{% endblock %}

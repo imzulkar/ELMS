@@ -1,0 +1,35 @@
+{% extends 'Admin_panel/admin_panel_base.html' %}
+{% block body_block %}
+<div class="container-fluid pt-5">
+    <h3>Course List</h3>
+    <table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Course Code</th>
+      <th scope="col">Course Name</th>
+      <th scope="col">Credit</th>
+      <th scope="col">Edit</th>
+    </tr>
+  </thead>
+  <tbody>
+
+     {% for subject in subjects_list %}
+      <tr>
+          <th scope="row">1</th>
+          <td>{{ subject.courseCode }}</td>
+          <td>{{ subject.courseTitle }}</td>
+          <td>{{ subject.courseCredit }}</td>
+          <td>
+              <a href="{% url 'Admin_panel:update_course' pk=subject.pk %}"><i class="fa fa-pencil"></i>  </a>
+              <a href="{% url 'Admin_panel:delete_course' pk=subject.pk %}"> <i class="fa fa-trash"></i></a>
+          </td>
+
+      </tr>
+      {% endfor %}
+
+  </tbody>
+    </table>
+</div>
+
+{% endblock %}

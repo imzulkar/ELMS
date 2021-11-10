@@ -1,0 +1,46 @@
+{% extends 'Teachers_app/teachers_base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block body_block %}
+
+    <div class="container">
+        <div class="table">
+            <table class="table  ">
+              <thead >
+                <tr class="">
+                  <th scope="col">#</th>
+                  <th scope="col">ID</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Semester</th>
+                  <th scope="col">Marks Input</th>
+                </tr>
+              </thead>
+                {% for student in students%}
+                <tbody >
+                    <tr>
+                      <th scope="row">1</th>
+                        <td>{{ student.students_info.studentID }}</td>
+                      <td>{{ student.first_name }} {{ student.last_name }}</td>
+
+                      <td>{% if student.students_info.student %}
+                          Student {% else %}
+                          Restricted
+                      {% endif %}
+                      </td>
+
+                      <td><a href="{% url 'Teachers_app:marks' pk=student.pk %}" class="btn btn-primary btn-sm center rounded"><i class="fa fa-pencil"></i> Marks</a></td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+
+        </div>
+    </div>
+
+
+    <ul>
+
+
+
+    </ul>
+{% endblock %}
