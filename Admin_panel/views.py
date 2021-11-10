@@ -39,33 +39,43 @@ def AdminAuthentication(request):
 
     return render(request,'Admin_panel/admin-login.html',context={'form':form})
 login_required(login_url='Admin_panel:login')
+
+
+login_required(login_url=AdminAuthentication)
 def AdminDashboard(request):
 
 
 
     return render(request,'Admin_panel/admin_panel_base.html', context={})
 
+login_required(login_url=AdminAuthentication)
 def Admin_logOut(request):
     logout(request)
     return HttpResponseRedirect(reverse('Admin_panel:admin_authentication'))
 
+
+login_required(login_url=AdminAuthentication)
 class SubjectListView(ListView):
     context_object_name = 'subjects_list'
     model = Course
     template_name = 'Admin_panel/course_list'
 
+
+login_required(login_url=AdminAuthentication)
 class AddCourseView(CreateView):
     context_object_name = 'addcourse'
     model = Course
     fields = ['courseCode','courseTitle','courseCredit']
     template_name = 'Admin_panel/add_course.html'
 
+
+login_required(login_url=AdminAuthentication)
 class UpdateCourseView(UpdateView):
     model = Course
     fields = '__all__'
     template_name = 'Admin_panel/add_course.html'
 
-
+login_required(login_url=AdminAuthentication)
 class DeleteCourseView(DeleteView):
     model = Course
     success_url = reverse_lazy('Admin_panel:course_list')
@@ -73,12 +83,16 @@ class DeleteCourseView(DeleteView):
 
 
 # Teachers Section
+
+login_required(login_url=AdminAuthentication)
 class TeacherListView(ListView):
     context_object_name = 'teachers_list'
     model = User
     queryset = User.objects.filter(teachers_info__teacher = True)
     template_name = 'Admin_panel/teachers_list.html'
 
+
+login_required(login_url=AdminAuthentication)
 class TeacherDetailView(DetailView):
     model = User
     context_object_name = 'teacher_details'
