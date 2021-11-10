@@ -83,7 +83,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'LMS_system.wsgi.application'
+# WSGI_APPLICATION = 'LMS_system.wsgi.application'
+ASGI_APPLICATION = "LMS_system.asgi.application"
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # Database
@@ -158,7 +159,7 @@ ABSOLUTE_URL_OVERRIDES = {
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-ASGI_APPLICATION = "LMS_system.asgi.application"
+
 
 
 CHANNEL_LAYERS = {
