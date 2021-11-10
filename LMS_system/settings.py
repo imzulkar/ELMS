@@ -83,8 +83,9 @@ TEMPLATES = [
     },
 ]
 
+ASGI_APPLICATION = 'LMS_system.asgi.application'
 WSGI_APPLICATION = 'LMS_system.wsgi.application'
-ASGI_APPLICATION = "LMS_system.asgi.application"
+
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # Database
