@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView,DeleteView,UpdateView,TemplateView,ListView,DetailView
 from django.views.generic.edit import FormMixin
+
+import Admin_panel
 from .models import Course,OfferedCourse,Semester
 from Teachers_app.models import TeachersList
 from django.contrib.auth.models import User
@@ -41,27 +43,27 @@ def AdminAuthentication(request):
 login_required(login_url='Admin_panel:login')
 
 
-login_required(login_url=AdminAuthentication)
+login_required(login_url='Admin_panel:admin_authentication')
 def AdminDashboard(request):
 
 
 
     return render(request,'Admin_panel/admin_panel_base.html', context={})
 
-login_required(login_url=AdminAuthentication)
+login_required(login_url='Admin_panel:admin_authentication')
 def Admin_logOut(request):
     logout(request)
     return HttpResponseRedirect(reverse('Admin_panel:admin_authentication'))
 
 
-login_required(login_url=AdminAuthentication)
+login_required(login_url='Admin_panel:admin_authentication')
 class SubjectListView(ListView):
     context_object_name = 'subjects_list'
     model = Course
     template_name = 'Admin_panel/course_list'
 
 
-login_required(login_url=AdminAuthentication)
+login_required(login_url='Admin_panel:admin_authentication')
 class AddCourseView(CreateView):
     context_object_name = 'addcourse'
     model = Course
@@ -69,13 +71,13 @@ class AddCourseView(CreateView):
     template_name = 'Admin_panel/add_course.html'
 
 
-login_required(login_url=AdminAuthentication)
+login_required(login_url='Admin_panel:admin_authentication')
 class UpdateCourseView(UpdateView):
     model = Course
     fields = '__all__'
     template_name = 'Admin_panel/add_course.html'
 
-login_required(login_url=AdminAuthentication)
+login_required(login_url='Admin_panel:admin_authentication')
 class DeleteCourseView(DeleteView):
     model = Course
     success_url = reverse_lazy('Admin_panel:course_list')
@@ -83,8 +85,7 @@ class DeleteCourseView(DeleteView):
 
 
 # Teachers Section
-
-login_required(login_url=AdminAuthentication)
+login_required(login_url='Admin_panel:admin_authentication')
 class TeacherListView(ListView):
     context_object_name = 'teachers_list'
     model = User
@@ -92,7 +93,7 @@ class TeacherListView(ListView):
     template_name = 'Admin_panel/teachers_list.html'
 
 
-login_required(login_url=AdminAuthentication)
+login_required(login_url='Admin_panel:admin_authentication')
 class TeacherDetailView(DetailView):
     model = User
     context_object_name = 'teacher_details'
@@ -134,7 +135,7 @@ class TeacherDetailView(DetailView):
 #
 #         return context
 
-
+login_required(login_url='Admin_panel:admin_authentication')
 def AddNewTeacherView(request):
     if request.method=='POST':
         form = AddTeacherForm(data=request.POST)
