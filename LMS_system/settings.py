@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-ui&8&3q7)#w7hk2ormib2m_uvde*^i&m$8gt(7-8(adnd=-+xe
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'diu-elms.herokuapp.com/', '.vercel.app']
+ALLOWED_HOSTS = ['*']
 
 
 
