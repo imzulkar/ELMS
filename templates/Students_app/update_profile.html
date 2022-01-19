@@ -3,7 +3,7 @@
 {% load crispy_forms_tags %}
 {% block body_block %}
     <div class="container">
-        <form action="" method="POST">
+        <form action="" method="POST" enctype="multipart/form-data">
             {{ form|crispy  }}
             {% csrf_token %}
             <input type="submit" value="update" class="btn btn-primary">

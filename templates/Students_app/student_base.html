@@ -29,6 +29,9 @@
   <link rel="shortcut icon" href="{% static 'Students_app/img/favicon.ico'%}">
 {#    highcards Css #}
     <link rel="stylesheet" href="{% static 'Students_app/css/highcards.css' %}">
+    {% block style_block %}
+    {% endblock %}
+
   <!-- Tweaks for older IEs-->
   <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -43,7 +46,7 @@
       <!-- Sidebar Header    -->
       <div class="sidenav-header d-flex align-items-center justify-content-center">
         <!-- User Info-->
-        <div class="sidenav-header-inner text-center"><img src="{% static 'Students_app/img/avatar-7.jpg'%}" alt="person"
+        <div class="sidenav-header-inner text-center"><img src="{{user_more_info.profile_pic.url}}" alt="person"
             class="img-fluid rounded-circle">
           <h2 class="h5">{{ user.username}}</h2><span>{{ user.email }}</span>
         </div>
@@ -60,12 +63,12 @@
           <li><a href="{% url 'Students_app:studentdashboard' %}"> <i class="fa fa-home"></i></i>Dashboard </a></li>
           <li><a href="{% url 'Students_app:student_profile' %}"> <i class="fa fa-user"></i>Profile </a></li>
           <li><a href="{% url 'Students_app:StudentProfileUpdate' %}"> <i class="fa fa-pencil-square-o"></i>Profile Update </a></li>
-          <li><a href="tables.html"> <i class="fa fa-key"></i>Password Change </a></li>
+          <li><a href="{% url 'Students_app:password_change' %}"> <i class="fa fa-key"></i>Password Change </a></li>
           <li><a href="tables.html"> <i class="fa fa-th-list"></i>Payment Ledger </a></li>
           <li><a href="tables.html"> <i class="fa fa-check-square-o"></i>Registration/Exam Clearance </a></li>
           <li><a href="{% url 'Students_app:chat' %}"> <i class="fa fa-text-width"></i>Live Chat </a></li>
             {% endif %}
-          <li><a href="tables.html"> <i class="fa fa-plus-circle"></i>Student Application </a></li>
+          <li><a href="{% url 'Students_app:student_application' %}"> <i class="fa fa-plus-circle"></i>Student Application </a></li>
 
         </ul>
       </div>
@@ -73,10 +76,10 @@
         <h5 class="sidenav-heading">Academic Section</h5>
         <ul id="side-admin-menu" class="side-menu list-unstyled">
             {% if user.is_authenticated %}
-          <li><a href="tables.html"> <i class="fa fa-user-times"></i>Drop Semester </a></li>
+          <li><a href="{% url 'Students_app:drop_semester' %}"> <i class="fa fa-user-times"></i>Drop Semester </a></li>
           <li><a href="tables.html"> <i class="fa fa-compress"></i>Live Result </a></li>
             {% endif %}
-          <li><a href="tables.html"> <i class="fa fa-list-ul"></i>Routine </a></li>
+          <li><a href="{% url 'Students_app:routine' %}"> <i class="fa fa-list-ul"></i>Routine </a></li>
           <li><a href="tables.html"> <i class="fa fa-bolt"></i>Result </a></li>
         </ul>
       </div>

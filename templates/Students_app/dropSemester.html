@@ -1,0 +1,46 @@
+{% extends 'Students_app/student_base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block body_block %}
+    {% if user.is_authenticated %}
+
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col"
+                     style="border: 1px solid #ddd; background-color: #ffffff; border-radius: 5px;padding: 10px">
+                    <form method="POST">
+                        {{ form|crispy }}
+                        {% csrf_token %}
+                        <input type="submit" value="submit" class="btn btn-primary">
+                    </form>
+                </div>
+                <div class="col ">
+                    <table class="table">
+                        <thead class="" style="background:#33b35a !important;color: #ffffff;">
+                        <tr>
+                            <th scope="col">Semester</th>
+                            <th scope="col">Cause</th>
+                            <th scope="col">Date</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        {% for dropSem in dropSemDetails %}
+                            <tr>
+                                <td><a href="">{{ dropSem.semester }}</a></td>
+                                <td>{{ dropSem.dropReason }}</td>
+                                <td>{{ dropSem.dropDate }}</td>
+                            </tr>
+                        {% endfor %}
+
+
+                        </tbody>
+                    </table>
+
+
+                </div>
+            </div>
+
+        </div>
+    {% endif %}
+{% endblock %}

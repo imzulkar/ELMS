@@ -1,14 +1,15 @@
 from django.db import models
-from django.urls import reverse,reverse_lazy
+from django.urls import reverse, reverse_lazy
 from django.contrib.auth.models import User
 from Teachers_app.models import TeachersList
+
+
 # Create your models here.
 
 
-
 class Course(models.Model):
-    courseCode = models.CharField(max_length=10,default='')
-    courseTitle = models.CharField(max_length=40,default='')
+    courseCode = models.CharField(max_length=10, default='')
+    courseTitle = models.CharField(max_length=40, default='')
     courseCredit = models.IntegerField()
 
     def __str__(self):
@@ -17,8 +18,10 @@ class Course(models.Model):
     def get_absolute_url(self):
         return reverse('Admin_panel:add_course')
 
+
 class Semester(models.Model):
-    semester = models.CharField(max_length=30,default='')
+    semester = models.CharField(max_length=30, default='')
+
     def __str__(self):
         return self.semester
 
@@ -31,18 +34,16 @@ class OfferedCourse(models.Model):
     courseCost = models.IntegerField()
 
     def __str__(self):
-        return self.courseName + "Cost: "+ str(self.courseCost)
-
+        return self.courseName + "Cost: " + str(self.courseCost)
 
 
 class BatchInfo(models.Model):
-    batch = models.IntegerField(null=True,default=1)
-    section = models.CharField(max_length=4, null=True,default='A')
-    assignTeacher = models.ForeignKey(TeachersList,on_delete=models.CASCADE)
+    batch = models.IntegerField(null=True, default=1)
+    section = models.CharField(max_length=4, null=True, default='A')
+    assignTeacher = models.ForeignKey(TeachersList, on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(self.batch) + '-'+self.section
-
+        return str(self.batch) + '-' + self.section
 
 #
 # class StudentsInfoModel(models.Model):

@@ -2,8 +2,8 @@ from django.forms import ModelForm
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from Students_app.models import StudentsInfo,RegisteredCourse,MarksDistribution
-
+from Students_app.models import StudentsInfo, RegisteredCourse, MarksDistribution, DropSemesterModel, \
+    StudentApplicationModel
 
 
 class MarkDistributionForm(ModelForm):
@@ -11,18 +11,22 @@ class MarkDistributionForm(ModelForm):
         model = MarksDistribution
         fields = ('student',)
 
+
 class StudentForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ('username','first_name','last_name','email','password1','password2')
+        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')
         help_texts = {
             'username': None,
-            'password2':None,
+            'password2': None,
         }
+
+
 class StudentLinkForm(ModelForm):
     class Meta:
         model = StudentsInfo
-        fields= ('studentID','batchId')
+        fields = ('studentID', 'batchId')
+
 
 class DateInput(forms.DateInput):
     input_type = "date"
@@ -35,10 +39,10 @@ class DateInput(forms.DateInput):
 
 class updateStudentProfile(ModelForm):
     class Meta:
-        model= StudentsInfo
-        exclude = ('userId', 'studentID','student',)
-        widgets ={
-            'dateOfBirth':DateInput(format=["%d-%m-%Y"],),
+        model = StudentsInfo
+        exclude = ('userId', 'studentID', 'student',)
+        widgets = {
+            'dateOfBirth': DateInput(format=["%d-%m-%Y"], ),
         }
 
 
@@ -47,14 +51,31 @@ class loginForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput)
 
 
+class PasswordChangeForm(ModelForm):
+    password2 = forms.CharField(widget=forms.PasswordInput)
+
+    class Meta:
+        model = User
+        fields = ('password', 'password2')
+        widgets = {
+            'password': forms.PasswordInput,
+
+        }
+
 
 class CourseRegistrationForm(ModelForm):
     class Meta:
-        model =RegisteredCourse
-        fields = ('registeredSemester','registeredCourse',)
+        model = RegisteredCourse
+        fields = ('registeredSemester', 'registeredCourse',)
 
 
+class DropSemesterForm(ModelForm):
+    class Meta:
+        model = DropSemesterModel
+        exclude = ('user',)
 
 
-
-
+class StudentApplicationForm(ModelForm):
+    class Meta:
+        model = StudentApplicationModel
+        exclude = ('user',)
