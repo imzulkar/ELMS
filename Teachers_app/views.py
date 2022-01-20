@@ -1,10 +1,10 @@
 from django.shortcuts import render, HttpResponseRedirect, redirect, reverse
 from django.http import HttpResponse, HttpResponseRedirect
-from .forms import TeachersListForm, loginForm, RegisteredCourseForm
+from .forms import TeachersListForm, loginForm, RegisteredCourseForm, updateTeacherProfile
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from Teachers_app.models import TeachersList, TeachersFaculty, TeachersDepartment, TeachersDesignation
-from Students_app.forms import StudentForm, StudentLinkForm, MarkDistributionForm
+from Students_app.forms import StudentForm, StudentLinkForm, MarkDistributionForm, PasswordChangeForm
 from Students_app.models import MarksDistribution, StudentsInfo, RegisteredCourse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -63,7 +63,21 @@ def TeachersProfile(request):
     teachers_info = User.objects.get(pk=user_id)
     teachers_details = TeachersList.objects.get(userId__pk=user_id)
     diction = {'teachers_info': teachers_info, 'teachers_details': teachers_details, 'title': 'profile'}
-    return render(request, 'Teachers_app/teachers_profile.html', context=diction)
+    return render(request, 'Teachers_app/teacher_profile.html', context=diction)
+
+
+@login_required(login_url='Teachers_app:teacherslogin')
+def TeacherProfileUpdate(request):
+    teacherId = request.user.id
+    teacherInfo = TeachersList.objects.get(userId__pk=teacherId)
+    form = updateTeacherProfile(instance=teacherInfo)
+
+    if request.method == 'POST':
+        form = updateTeacherProfile(request.POST, instance=teacherInfo)
+        if form.is_valid():
+            form.save()
+
+    return render(request, 'Teachers_app/teacher_profile_edit.html', context={'form': form})
 
 
 @login_required(login_url='Teachers_app:teacherslogin')
@@ -110,16 +124,49 @@ class Students_list(ListView):
     #     context = super().get_context_data(**kwargs)
 
 
-class AddMarks(UpdateView):
+class AddMarks(CreateView):
     model = MarksDistribution
-    fields = ['quiz_1', 'quiz_2', 'quiz_3', 'Assignment', 'presentation', 'mid', 'final', 'mid_improvement']
+    fields = ['student', 'quiz_1', 'quiz_2', 'quiz_3', 'Assignment', 'presentation', 'mid', 'final', 'mid_improvement']
     context_object_name = 'marks'
     template_name = 'Teachers_app/marks_update.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        print(context)
 
         return context
 
+
+def AddStudentMarks(request, studentId):
+    form = MarkDistributionForm()
+    if request.POST:
+        form = MarkDistributionForm(data=request.POST)
+        formData = form.save(commit=False)
+        formData.student = studentId
+        formData.save()
+        return HttpResponseRedirect(reverse('Teachers_app:teachers_dashboard'))
+    return render(request, 'Teachers_app/marks_update.html', context={'form': form})
+
+
 #
 # def CourseInstructor(request):
+
+
+@login_required(login_url='Teachers_app:teacherslogin')
+def passwordChangeView(request):
+    form = PasswordChangeForm()
+
+    if request.method == 'POST':
+        form = PasswordChangeForm(data=request.POST)
+        if form.is_valid():
+            password = form.cleaned_data.get('password')
+            password2 = form.cleaned_data.get('password2')
+            # print(password2)
+            # print(password)
+            if password == password2:
+                user = User.objects.get(username=request.user.username)
+                user.set_password(password)
+                user.save()
+                return HttpResponseRedirect(reverse('Teachers_app:teachers_dashboard'))
+
+    return render(request, 'Teachers_app/password_change.html', context={'form': form})

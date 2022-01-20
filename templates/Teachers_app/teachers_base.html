@@ -30,6 +30,9 @@
     <!-- Favicon-->
     <link rel="shortcut icon" href="{% static 'Students_app/img/favicon.ico' %}">
     <!-- Tweaks for older IEs-->
+    {% block style_block %}
+    {% endblock %}
+
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -58,11 +61,11 @@
             <ul id="side-main-menu" class="side-menu list-unstyled">
                 <li><a href="{% url 'Teachers_app:teachers_dashboard' %}"> <i class="fa fa-home"></i></i>Dashboard </a></li>
                 <li><a href="{% url 'Teachers_app:teaches_profile' %}"> <i class="fa fa-user"></i>Profile </a></li>
-                <li><a href=""> <i class="fa fa-pencil-square-o"></i>Profile Update </a></li>
-                <li><a href=""> <i class="fa fa-key"></i>Password Change </a></li>
+                <li><a href="{% url 'Teachers_app:teaches_profile_update' %}"> <i class="fa fa-pencil-square-o"></i>Profile Update </a></li>
+                <li><a href="{% url 'Teachers_app:password_change' %}"> <i class="fa fa-key"></i>Password Change </a></li>
                 <li><a href=""> <i class="fa fa-plus-circle"></i>Application </a></li>
                 <li><a href="{% url 'Students_app:chat' %}"> <i class="fa fa-plus-circle"></i>Live Chat </a></li>
-                <li><a href="{% url 'Teachers_app:marks' %}"> <i class="fa fa-pencil"></i>Marks Input </a></li>
+                <li><a href="{% url 'Teachers_app:add_students_mark' %}"> <i class="fa fa-pencil"></i>Marks Input </a></li>
                 <li><a href="{% url 'Teachers_app:student_list' %}"> <i class="fa fa-user-times"></i>Students </a></li>
 
 
