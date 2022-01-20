@@ -9,7 +9,7 @@ from Students_app.models import StudentsInfo, RegisteredCourse, MarksDistributio
 class MarkDistributionForm(ModelForm):
     class Meta:
         model = MarksDistribution
-        fields = ('student',)
+        exclude = ('student',)
 
 
 class StudentForm(UserCreationForm):
