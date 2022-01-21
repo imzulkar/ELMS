@@ -181,3 +181,6 @@ def studentList(request):
 def studentApplicationsView(request):
     studentApplication = StudentApplicationModel.objects.all().order_by('-id')
     return render(request, 'Teachers_app/student_application_list.html', context={'studentApplication': studentApplication})
+
+def teacherRoutine(request):
+    return render(request, 'Teachers_app/teachers_routine.html', context={})

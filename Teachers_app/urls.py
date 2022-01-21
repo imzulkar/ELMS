@@ -15,5 +15,6 @@ urlpatterns = [
     path('marks/<studentId>/', views.AddStudentMarks, name='add_students_mark'),
     path('students_list/', views.studentList, name='student_list'),
     path('students_application_list/', views.studentApplicationsView, name='students_application_list'),
+    path('teachers_routine/', views.teacherRoutine, name='teachers_routine'),
 
 ]
