@@ -5,7 +5,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from Teachers_app.models import TeachersList, TeachersFaculty, TeachersDepartment, TeachersDesignation
 from Students_app.forms import StudentForm, StudentLinkForm, MarkDistributionForm, PasswordChangeForm
-from Students_app.models import MarksDistribution, StudentsInfo, RegisteredCourse
+from Students_app.models import MarksDistribution, StudentsInfo, RegisteredCourse, StudentApplicationModel
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.views.generic import UpdateView, CreateView, ListView, DetailView
@@ -170,3 +170,14 @@ def passwordChangeView(request):
                 return HttpResponseRedirect(reverse('Teachers_app:teachers_dashboard'))
 
     return render(request, 'Teachers_app/password_change.html', context={'form': form})
+
+
+@login_required(login_url='Teachers_app:teacherslogin')
+def studentList(request):
+    studentInfo = StudentsInfo.objects.all()
+    return render(request, 'Teachers_app/teacher_students_list.html', context={'student_list': studentInfo})
+
+
+def studentApplicationsView(request):
+    studentApplication = StudentApplicationModel.objects.all().order_by('-id')
+    return render(request, 'Teachers_app/student_application_list.html', context={'studentApplication': studentApplication})
