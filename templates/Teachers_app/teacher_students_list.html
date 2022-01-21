@@ -10,8 +10,7 @@
         <table class="table table-striped">
   <thead>
     <tr>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
+      <th scope="col">Name</th>
       <th scope="col">Student ID</th>
       <th scope="col">Email</th>
       <th scope="col">Batch</th>
@@ -21,8 +20,7 @@
   <tbody>
   {% for student in student_list %}
       <tr>
-      <th scope="row">{{ student.userId.first_name }}</th>
-      <td>{{ student.userId.last_name }}</td>
+      <th scope="row">{{ student.userId.first_name }} {{ student.userId.last_name }}</th>
       <td>{{ student.studentID }}</td>
       <td>{{ student.userId.email }}</td>
       <td>{{ student.batchId.batch }}</td>
