@@ -2,7 +2,7 @@ from django.forms import ModelForm
 from django import forms
 from django.contrib.auth.models import User
 from Students_app.forms import DateInput
-from .models import TeachersList
+from .models import TeachersList, UpdateNotice
 from Students_app.models import RegisteredCourse,MarksDistribution
 
 
@@ -45,3 +45,9 @@ class MarkDistributionForm(ModelForm):
     class Meta:
         model = MarksDistribution
         exclude = ('student',)
+
+
+class UpdatePostForm(ModelForm):
+    class Meta:
+        model = UpdateNotice
+        exclude = ('postedBy',)

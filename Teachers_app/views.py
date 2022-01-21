@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponseRedirect, redirect, reverse
 from django.http import HttpResponse, HttpResponseRedirect
-from .forms import TeachersListForm, loginForm, RegisteredCourseForm, updateTeacherProfile
+from .forms import TeachersListForm, loginForm, RegisteredCourseForm, updateTeacherProfile, UpdatePostForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from Teachers_app.models import TeachersList, TeachersFaculty, TeachersDepartment, TeachersDesignation
@@ -180,7 +180,22 @@ def studentList(request):
 
 def studentApplicationsView(request):
     studentApplication = StudentApplicationModel.objects.all().order_by('-id')
-    return render(request, 'Teachers_app/student_application_list.html', context={'studentApplication': studentApplication})
+    return render(request, 'Teachers_app/student_application_list.html',
+                  context={'studentApplication': studentApplication})
+
 
 def teacherRoutine(request):
     return render(request, 'Teachers_app/teachers_routine.html', context={})
+
+
+def noticeUpdate(request):
+    form = UpdatePostForm()
+    teacher = TeachersList.objects.get(userId=request.user)
+    if teacher.teacher:
+        if request.method == 'POST':
+            form = UpdatePostForm(instance=request.POST)
+            data = form.save(commit=False)
+            data.postedBy = request.user
+            data.save()
+            return HttpResponseRedirect(reverse('Teachers_app:post_notice'))
+    return render(request, 'Teachers_app/post_update.html', context={'form': form, 'title': 'Post Notice'})

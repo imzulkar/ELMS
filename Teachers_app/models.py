@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
-
+# from Students_app.models import BatchInfo
 
 # Create your models here.
 
@@ -42,3 +42,13 @@ class TeachersList(models.Model):
 
     def get_absolute_url(self):
         return reverse('Admin_panel:add_teacher')
+
+
+class UpdateNotice(models.Model):
+    # batch = models.ForeignKey(BatchInfo, on_delete=models.CASCADE, related_name='notice_update_batch')
+    postedBy = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posted_by_user')
+    subject = models.CharField(max_length=255, blank=True)
+    topic = models.TextField()
+
+    def __str__(self):
+        return f'{self.subject} {self.postedBy}'

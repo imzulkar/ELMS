@@ -16,5 +16,6 @@ urlpatterns = [
     path('students_list/', views.studentList, name='student_list'),
     path('students_application_list/', views.studentApplicationsView, name='students_application_list'),
     path('teachers_routine/', views.teacherRoutine, name='teachers_routine'),
+    path('post_notice/', views.noticeUpdate, name='post_notice'),
 
 ]
